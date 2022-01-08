@@ -1,6 +1,7 @@
 import asyncio
 from os import getcwd, path
-from pyrogram import Client, filters
+from modules.clients.main_user import user
+from pyrogram import filters
 
 from modules.commands.echo import command_echo
 
@@ -13,11 +14,6 @@ def login():
         api_hash = input("enter your api_hash: ")
         with open(f'{str(__file__).replace("main.py", "")}/config.ini', 'w') as config:
             config.write(f"[pyrogram] \n api_id = {api_id} \n api_hash = {api_hash}")
-
-@user.on_message(filters.text & filters.private & filters.command(commands))
-async def test_handler(client, message):
-    await message.reply(message.text)
-
 
 if __name__ == "__main__":
     login()
