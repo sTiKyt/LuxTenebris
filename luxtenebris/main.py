@@ -1,6 +1,8 @@
 import asyncio
 from os import getcwd, path
-from pyrogram import Client
+from pyrogram import Client, filters
+
+user = Client("LuxTenebris")
 
 def login():
     if path.exists("./config.ini"):
@@ -12,10 +14,11 @@ def login():
         with open(f'{str(__file__).replace("main.py", "")}/config.ini', 'w') as config:
             config.write(f"[pyrogram] \n api_id = {api_id} \n api_hash = {api_hash}")
 
-async def main():
-    async with Client("my_account", api_id, api_hash) as app:
-        await app.send_message("me", "Greetings from **Pyrogram**!")
+@user.on_message(filters.text & filters.private & filters.command(commands))
+async def test_handler(client, message):
+    await message.reply(message.text)
+
 
 if __name__ == "__main__":
     login()
-    #asyncio.run(main())
+    user.run()
