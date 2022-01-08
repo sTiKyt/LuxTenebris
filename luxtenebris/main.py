@@ -2,7 +2,7 @@ import asyncio
 from os import getcwd, path
 from pyrogram import Client, filters
 
-user = Client("LuxTenebris")
+from modules.commands.echo import command_echo
 
 def login():
     if path.exists("./config.ini"):
