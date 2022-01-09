@@ -1,4 +1,3 @@
-from asyncio import sleep as async_sleep
 from pyrogram import filters
 from modules.clients.main_user import user, command_prefix
 
