@@ -23,7 +23,7 @@ async def command_echo(client, message) -> None:
         chats_involved[message.chat.id] = 0
         loop = False
         await message.edit(f"Module **echo** was disabled in {chat_name}")
-    elif "loop" in data.lower() and "YES" in data:
+    elif ("loop" in data.lower() or "kill" in data.lower()) and "YES" in data:
         loop = True
         await message.edit(f"**Loop** mode of **echo** is **activated**! Run, fools!")
     elif "loop" in data.lower() or "kill" in data.lower():
