@@ -30,9 +30,11 @@ async def command_echo(client, message) -> None:
         if loop == True:
             loop = not loop
         await message.edit(f"**Loop** mode is very dangerous and can get you **BANNED**, to confirm activation run: ```{command_prefix}echo loop YES```")
-    
+    try:
     if chats_involved[message.chat.id] == 0 and loop:
         await message.reply(f"Not really, you forgot to enable **echo**, genius... run: ```{command_prefix}echo true```")
+    except:
+        pass # TODO log some info or warning about chat not being in dictionary yet
 
     print(chats_involved)
     print(message.chat.id)
