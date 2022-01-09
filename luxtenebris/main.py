@@ -3,7 +3,7 @@ from os import getcwd, path
 from modules.clients.main_user import user
 from pyrogram import filters
 
-from modules.commands.echo import command_echo
+from modules.commands.echo import command_echo, execute_echo
 
 def login():
     if path.exists("./config.ini"):
