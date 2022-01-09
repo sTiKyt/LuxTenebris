@@ -5,7 +5,13 @@ chats_involved = {}
 loop = False
 
 @user.on_message(filters.text & filters.command('echo', command_prefix))
-async def command_echo(client, message):
+async def command_echo(client, message) -> None:
+    """Enable repeating of all incoming messages in chat
+
+    Args:
+        client ([Client]): Pyrogram client, usually passed by decorator
+        message ([Message]): Pyrogram message, usually passed by decorator
+    """
     global loop
     chat_data = await user.get_chat(message.chat.id)
     chat_name = f'**{chat_data.title}**'
