@@ -1,8 +1,7 @@
 from random import uniform
 from asyncio import sleep
 from pyrogram import Client, filters
-from modules.clients.main_user import command_prefix
-from ..registry import plugins_and_help
+from ..registry import plugins_and_help, command_prefix
 
 plugins_and_help['echo'] = f"""
 **== Repeat messages after others ==**
