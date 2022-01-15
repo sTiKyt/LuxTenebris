@@ -131,3 +131,4 @@ dmypy.json
 config.ini
 luxtenebris/LuxTenebris.session
 luxtenebris/LuxTenebris.session-journal
+luxtenebris/modules/plugins/temp/*
