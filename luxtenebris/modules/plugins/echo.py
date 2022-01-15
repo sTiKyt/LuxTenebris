@@ -4,6 +4,17 @@ from pyrogram import Client, filters
 from modules.clients.main_user import command_prefix
 from ..registry import plugins_and_help
 
+plugins_and_help['echo'] = f"""
+**== Repeat messages after others ==**
+```Usage: `{command_prefix}echo [option]`
+Options:
+true, enable   : activate echo mode
+false, disable : deactivate echo mode
+loop, kill     : repeats all messages it can see
+                 indefinitely, requires further
+                 confirmation for your accounts
+                 safety but can be bypassed by
+                 confirming it ahead of time```"""
 
 chats_involved = {}
 loop = False
