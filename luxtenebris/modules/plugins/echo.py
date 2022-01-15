@@ -59,6 +59,7 @@ async def execute_echo(client, message):
             elif message.text is not None:
                 print(loop) #DEBUG LOG
                 while loop:
+                    await sleep(uniform(uniform(1, 2), uniform(1, 2)))
                     await message.reply(message.text)
                 await message.reply(message.text)
                 # await message.reply(message) # FOR DEBUG
