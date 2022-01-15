@@ -1,10 +1,14 @@
-from pyrogram import filters
-from modules.clients.main_user import user, command_prefix
+from random import uniform
+from asyncio import sleep
+from pyrogram import Client, filters
+from modules.clients.main_user import command_prefix
+from ..registry import plugins_and_help
+
 
 chats_involved = {}
 loop = False
 
-@user.on_message(filters.text & filters.command('echo', command_prefix))
+@Client.on_message(filters.command('echo', command_prefix))
 async def command_echo(client, message) -> None:
     """Enable repeating of all incoming messages in chat
 
@@ -13,7 +17,7 @@ async def command_echo(client, message) -> None:
         message ([Message]): Pyrogram message, usually passed by decorator
     """
     global loop
-    chat_data = await user.get_chat(message.chat.id)
+    chat_data = await client.get_chat(message.chat.id)
     chat_name = f'**{chat_data.title}**'
     data = str(message.text)
     if "enable" in data.lower() or "true" in data.lower():
@@ -31,16 +35,16 @@ async def command_echo(client, message) -> None:
             loop = not loop
         await message.edit(f"**Loop** mode is very dangerous and can get you **BANNED**, to confirm activation run: ```{command_prefix}echo loop YES```")
     try:
-    if chats_involved[message.chat.id] == 0 and loop:
-        await message.reply(f"Not really, you forgot to enable **echo**, genius... run: ```{command_prefix}echo true```")
+        if chats_involved[message.chat.id] == 0 and loop:
+            await message.reply(f"Not really, you forgot to enable **echo**, genius... run: ```{command_prefix}echo true```")
     except:
         pass # TODO log some info or warning about chat not being in dictionary yet
 
-    print(chats_involved)
-    print(message.chat.id)
+    print(chats_involved) # REPLACE WITH DEBUGLOG
+    print(message.chat.id) # DEBUG LOG
     #print(loop)
 
-@user.on_message()
+@Client.on_message()
 async def execute_echo(client, message):
     global loop
     if message.chat.id not in chats_involved:
@@ -53,8 +57,11 @@ async def execute_echo(client, message):
                 await message.reply_sticker(message.sticker.file_id)
                 
             elif message.text is not None:
-                print(loop)
+                print(loop) #DEBUG LOG
                 while loop:
                     await message.reply(message.text)
                 await message.reply(message.text)
-                
+                # await message.reply(message) # FOR DEBUG
+
+
+ 
