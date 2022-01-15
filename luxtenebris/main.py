@@ -1,9 +1,7 @@
-import asyncio
-from os import getcwd, path
-from modules.clients.main_user import user
-from pyrogram import filters
+from os import path
+#from modules.clients.main_user import user
+from pyrogram import Client
 
-from modules.commands.echo import command_echo, execute_echo
 
 def login():
     if path.exists("./config.ini"):
@@ -17,4 +15,4 @@ def login():
 
 if __name__ == "__main__":
     login()
-    user.run()
+    Client("LuxTenebris").run()
