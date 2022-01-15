@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from ..registry import plugins_and_help, command_prefix
+from .misc.registry import plugins_and_help, command_prefix
 
 plugins_and_help['help_no_module'] = f"No valid **module** was specified, please provide **module** name: \n`{command_prefix}help [module]`"
 
