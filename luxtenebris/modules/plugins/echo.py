@@ -29,18 +29,18 @@ async def command_echo(client, message) -> None:
     global loop
     chat_data = await client.get_chat(message.chat.id)
     chat_name = f'**{chat_data.title}**'
-    data = str(message.text)
-    if "enable" in data.lower() or "true" in data.lower():
+    message_text = str(message.text)
+    if "enable" in message_text.lower() or "true" in message_text.lower():
         chats_involved[message.chat.id] = 1
         await message.edit(f"Module **echo** was enabled in {chat_name}")
-    elif "disable" in data.lower() or "false" in data.lower():
+    elif "disable" in message_text.lower() or "false" in message_text.lower():
         chats_involved[message.chat.id] = 0
         loop = False
         await message.edit(f"Module **echo** was disabled in {chat_name}")
-    elif ("loop" in data.lower() or "kill" in data.lower()) and "YES" in data:
+    elif ("loop" in message_text.lower() or "kill" in message_text.lower()) and "YES" in message_text:
         loop = True
         await message.edit(f"**Loop** mode of **echo** is **activated**! Run, fools!")
-    elif "loop" in data.lower() or "kill" in data.lower():
+    elif "loop" in message_text.lower() or "kill" in message_text.lower():
         if loop == True:
             loop = not loop
         await message.edit(f"**Loop** mode is very dangerous and can get you **BANNED**, to confirm activation run: ```{command_prefix}echo loop YES```")
