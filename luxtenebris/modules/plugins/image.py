@@ -11,6 +11,11 @@ plugins_and_help['image'] = '**PLACEHOLDER**'
 async def command_image(client, message):
     message_text = str(message.text)
     media = f'{path.dirname(__file__)}/temp/{message.reply_to_message.message_id}'
+    if "convert" in message_text.lower():
+        for extension in extensions:
+            if extension in message_text.lower(): 
+                if 'webp' in extension:
+                    message_text = f'{str(message.text)} as_file'
     try:
         await client.download_media(message.reply_to_message, file_name=media)
         img = Image.open(media)
